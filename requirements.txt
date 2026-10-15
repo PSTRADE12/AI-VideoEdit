@@ -1,0 +1,2 @@
+# Base env: everything except transcription runs here (any Python 3.10+).
+# (stdlib only — no runtime deps)

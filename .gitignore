@@ -1,0 +1,31 @@
+# Binaries + local installs (never commit FilmCraft itself — 146MB)
+vendor/
+tools/
+filmcraft*.exe
+
+# Per-machine / secrets
+.env
+
+# Working artifacts (keep folders via .gitkeep, ignore contents)
+transcripts/*.json
+transcripts/*.jsonl
+transcripts/pop*
+exports/*
+!exports/.gitkeep
+media/*
+!media/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# FilmCraft projects can be huge — commit small demo ones only
+*.fcproj
+*.bak
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
