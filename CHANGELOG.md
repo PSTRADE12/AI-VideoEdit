@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Portable standalone release: `scripts/config.py` resolver, `scripts/setup_check.py` health gate, `.env.example`, `.gitignore` (vendor/exports/media/transcripts/keys out), `requirements.txt` + `requirements-transcribe.txt`, full clone-and-run `README.md` (FilmCraft install + any-AI-tool use). Binaries stay out of git (install per machine or git-ignored `vendor/`).
 - Git repo initialized (`main`) with FirstSpark pre-commit drift-guard hook (sitemap freshness + secret tripwire, tested exit 0). Tree + authors carry no personal info (GitHub noreply author).
+- Studio reel session 2026-10-16 (`studio light`, Hindi talking-head, 91.7s→79.3s): transcript import + `removePauses`, 21 SFX imported (13 placed on A2 at beats), hook title + 4 beat labels (verified via headless frame renders), `wordpop.py` 4K `--pos/--size` opts. Karaoke removed per user (English hallucinations on Hindi audio). FilmCraft GUI crash-loops (~30s, environmental); edits completed headless with `--save`.
 - Retired `FIRSTSPARK.md` (ignition protocol v1.1 fully implemented and verified; living suite is self-sustaining).
 - Editing system: `scripts/fc.py`, `transcribe.py`, `import_transcript.py`, `silence_scan.py`, `wordpop.py`, `new_reel.py`, `generate_sitemap.py`.
 - Agent skills: `generate_sitemap`, `test_and_verify`, `filmcraft_edit`.

@@ -9,7 +9,9 @@ Proven recipe 2026-10-11 (fixes two real bugs — see MEMORY.md):
     animate within a clip, so per-word clips are the only true karaoke.
 
 Usage:
-  python scripts/wordpop.py <words.json> [out-prefix]
+  python scripts/wordpop.py <words.json> [out-prefix] [--pos=x,y --size=N]
+  # defaults: pos 540,1350 + size 104 (1080x1920 house style).
+  # 4K vertical 2160x3840: --pos=1080,2700 --size=208.
   # writes <prefix>.new.jsonl, prints clip-id capture + color + align steps
   python scripts/fc.py run <prefix>.new.jsonl > new_out.txt
   # then build color/align batches with --color/--align using captured ids:
@@ -34,7 +36,7 @@ def color_of(text):
     return "yellow" if (len(clean) >= 5 or clean in KEYWORDS) else "white"
 
 
-def build_new(words, prefix):
+def build_new(words, prefix, pos=(540, 1350), size=104):
     lines = []
     for i, w in enumerate(words):
         s, e = w["start"], w["end"]
@@ -42,8 +44,8 @@ def build_new(words, prefix):
             e = min(e, words[i + 1]["start"] - 0.03)
         dur = max(0.25, round(e - s, 3))
         lines.append({"id": "graphics.newText", "params": {
-            "text": w["text"], "size": 104, "font": "Bahnschrift",
-            "fontStyle": "Bold", "position": [540, 1350],
+            "text": w["text"], "size": size, "font": "Bahnschrift",
+            "fontStyle": "Bold", "position": list(pos),
             "seconds": dur, "time": int(s * TICKS_PER_SEC)}})
     path = prefix + ".new.jsonl"
     with open(path, "w") as f:
@@ -80,12 +82,20 @@ def main():
         sys.exit(2)
     words = json.load(open(args[0]))
     prefix = args[1] if len(args) > 1 else "transcripts/pop"
+    pos = (540, 1350)
+    size = 104
+    for a in sys.argv[1:]:
+        if a.startswith("--pos="):
+            x, y = a.split("=", 1)[1].split(",")
+            pos = (int(x), int(y))
+        elif a.startswith("--size="):
+            size = int(a.split("=", 1)[1])
     if "--color" in sys.argv:
         build_color(words, sys.argv[sys.argv.index("--color") + 1], prefix)
     elif "--align" in sys.argv:
         build_color(words, sys.argv[sys.argv.index("--align") + 1], prefix)
     else:
-        build_new(words, prefix)
+        build_new(words, prefix, pos, size)
 
 
 if __name__ == "__main__":

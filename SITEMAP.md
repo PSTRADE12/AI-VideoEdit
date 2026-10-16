@@ -55,9 +55,9 @@
 - Local imports: —
 - def `main()` (L16–L43) → calls: append, dump, exit, get, lstrip, split
 
-## `scripts\wordpop.py` (L1–L92)
+## `scripts\wordpop.py` (L1–L102)
 - Local imports: —
-- def `color_of(text)` (L32–L34) → calls: lower, strip
-- def `build_new(words, prefix)` (L37–L54) → calls: append, dumps, write
-- def `build_color(words, ids_path, prefix)` (L57–L73) → calls: dump, dumps, get, loads, read, splitlines
-- def `main()` (L76–L88) → calls: exit, index, load, startswith
+- def `color_of(text)` (L34–L36) → calls: lower, strip
+- def `build_new(words, prefix, pos, size)` (L39–L56) → calls: append, dumps, write
+- def `build_color(words, ids_path, prefix)` (L59–L75) → calls: dump, dumps, get, loads, read, splitlines
+- def `main()` (L78–L98) → calls: exit, index, load, split, startswith

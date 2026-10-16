@@ -25,6 +25,12 @@
 - **[2026-10-11 | render via CLI bridge blocked]:** `render --seconds` → `render is headless; with --bridge use the MCP render_frame tool`. Rule: verify visually via `inspect`/`graphics.list`, not CLI renders.
 - **[2026-10-11 | MCP binary is filmcraft-cli]:** Google AI's `filmcraft.exe mcp` config is wrong; MCP server = `filmcraft-cli.exe mcp` (verified handshake `serverInfo filmcraft 0.5.0`). Headless OR `--bridge 127.0.0.1:9876`.
 - **[2026-10-11 | Vertical fill math]:** 1920x1080 source in 1080x1920 sequence → `motion scale 177.8` (1920/1080×100), position stays 540,960. Punch-in 210 at emphasis beats.
+- **[2026-10-16 | graphics.newText time is TICKS]:** Passing seconds (20.5) as `time` stacked 4 labels at 2.3s, overlapping on screen. Rule: `graphics.newText time` = ticks (`int(s*254016000000)`); verify starts via `inspect` after every title batch.
+- **[2026-10-16 | timeline.move needs track]:** `{"moves":[{"clip","time"}]}` fails with `need moves` — each move needs `{"clip","track","time"}` (track id, ticks). Verified headless.
+- **[2026-10-16 | headless --save when app crash-loops]:** GUI died ~30s after launch even on Demo project (environmental, not timeline-caused). Rule: `filmcraft-cli --project P --save run batch.jsonl` does full edits headless; verify with `render --seconds S --out f.png --scale 0.5` proofs and LOOK at them before calling titles done.
+- **[2026-10-16 | Content language Hindi]:** User's footage is Hindi speech — faster-whisper with `--lang=en` produced English hallucinations, so karaoke was mistimed/wrong and removed. Rule: detect language first (`--lang=hi` or auto), confirm words with user before building 100+ caption clips.
+- **[2026-10-16 | scale reset needs keyframe deletes]:** `effects.resetParam` / `effects.reset` do NOT clear animation (they null-op or add a playhead keyframe). Rule: remove scale animation with `effects.deleteKeyframe` per keyframe using EXACT mediaTime ticks (clip start=0/sourceIn=0/speed=1 → mediaTime=ticks; mystery keys sit at exact playhead ticks from `inspect`). Verify `kf: 0` + value after.
+- **[2026-10-16 | verify framing before scaling]:** Phone portrait footage can report landscape dims; NEVER assume crop needed. Rule: check current motion scale + actual canvas framing with the user before touching scale.
 
 ---
 

@@ -1,10 +1,10 @@
 # ⚡ ACTIVE_TASK.md — Working Memory & Handover Baton
 
 ## 🎯 Current Epic / Goal
-**Title:** Standalone clone-and-run release + first serious edit readiness
-- **Current Status:** STANDALONE READY — `config.py` resolver, `setup_check.py` gate green (10 modules), full README (FilmCraft install + any-AI-tool use). Bridge down (app closed); next: live verify + user's first footage.
-- **Active Lead Model:** Muse Spark (opencode) @ 2026-10-15
-- **Timestamp:** 2026-10-15 (standalone release; sitemap 10 modules)
+**Title:** Studio light reel — titles verified, ready for export call
+- **Current Status:** EDIT COMPLETE (headless, app crash-loops) — 79.3s, 12s pauses cut, 13 SFX hits, 5 titles proof-verified, crop reverted, karaoke off per user. Next: user says export (or Hindi captions, or more title tweaks).
+- **Active Lead Model:** Muse Spark (opencode) @ 2026-10-16
+- **Timestamp:** 2026-10-16 (titles verified via renders; workspace committed+pushed below)
 
 ---
 
