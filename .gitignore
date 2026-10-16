@@ -9,7 +9,11 @@ filmcraft*.exe
 # Working artifacts (keep folders via .gitkeep, ignore contents)
 transcripts/*.json
 transcripts/*.jsonl
+transcripts/*.wav
+transcripts/*.mp3
 transcripts/pop*
+*_out.txt
+*_out.json
 exports/*
 !exports/.gitkeep
 media/*
